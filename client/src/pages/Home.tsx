@@ -23,6 +23,23 @@ const options: Option[] = [
   { id: 12, label: "🚀 Mudar cadastro de Cliente P. F. Influencer", text: "É cliente e quer virar Influencer? Eu te mostro como alterar seu cadastro e aproveitar todos os benefícios.", link: "https://www.youtube.com/watch?v=yUv1DdFsfhM" },
 ];
 
+const audioMap: Record<number, string> = {
+  1: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/ELKhGkRkMBBUvTnT.mp3",
+  2: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/ZfgBvXNAAOuJTAOy.mp3",
+  3: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/JbJPJIxJaLhSWVxJ.mp3",
+  4: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/mQsWxZAVVfIbfnFb.mp3",
+  5: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/fsywgTVDPEIJdTKE.mp3",
+  6: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/yiKCzQQQInalMevi.mp3",
+  7: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/pgZZLSAOlYUUfuhU.mp3",
+  8: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/dpRRvUGMqjedFoBF.mp3",
+  9: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/zvfCpyRHthQzZygv.mp3",
+  10: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/ecmLwjiopHysWtkJ.mp3",
+  11: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/SlBUXLEjytgBxGon.mp3",
+  12: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/IWjzNZkEoNrDkjbe.mp3",
+};
+
+const welcomeAudio = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/ltlDnTUCMGKqCFhO.mp3";
+const genericMessageAudio = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663176829728/esTWYcnTaUpACzUS.mp3";
 const initialMessages: Message[] = [{ id: 0, from: "lana", text: "Olá! 👋 Eu sou a Lana, sua assistente virtual Farmasi.\n\nComo posso te ajudar hoje? ✨" }];
 
 function findSuggestion(text: string) {
@@ -42,13 +59,25 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [firstInteraction, setFirstInteraction] = useState(true);
   const messagesRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const playAudio = (source: string) => {
+    audioRef.current?.pause();
+    const audio = new Audio(source);
+    audioRef.current = audio;
+    void audio.play().catch(() => { /* O navegador pode exigir uma interação explícita antes do áudio. */ });
+  };
 
   useEffect(() => { messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight, behavior: "smooth" }); }, [messages]);
 
   const addOption = (option: Option) => {
+    if (firstInteraction) playAudio(welcomeAudio);
     setFirstInteraction(false);
     setMessages((current) => [...current, { id: Date.now(), from: "user", text: option.label }]);
-    window.setTimeout(() => setMessages((current) => [...current, { id: Date.now() + 1, from: "lana", text: option.text, link: option.link }]), 420);
+    window.setTimeout(() => {
+      playAudio(audioMap[option.id]);
+      setMessages((current) => [...current, { id: Date.now() + 1, from: "lana", text: option.text, link: option.link }]);
+    }, 420);
   };
 
   const sendMessage = () => {
@@ -60,6 +89,7 @@ export default function Home() {
     window.setTimeout(() => setMessages((current) => [...current, suggestion
       ? { id: Date.now() + 1, from: "lana", text: `Encontrei uma opção que pode te ajudar com sua dúvida sobre "${text}".`, suggestion }
       : { id: Date.now() + 1, from: "lana", text: "Obrigada pela sua mensagem! Para te ajudar melhor, por favor escolha uma das opções ou entre em contato com seu patrocinador. 😊" }]), 420);
+    if (!suggestion) window.setTimeout(() => playAudio(genericMessageAudio), 420);
   };
 
   return (
