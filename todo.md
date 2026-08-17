@@ -20,3 +20,9 @@
 - [ ] Remover o texto “✣ Made with Manus” da interface.
 - [ ] Remover o estilo residual do selo, se não for mais utilizado.
 - [ ] Validar a build e atualizar a publicação.
+
+## Correção do GitHub Pages
+
+- [ ] Diagnosticar por que `wendsontva-del.github.io/lana-farmasi/` retorna erro.
+- [ ] Corrigir a configuração de Pages ou a estrutura da branch publicada.
+- [ ] Testar novamente a URL pública.
