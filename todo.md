@@ -26,3 +26,9 @@
 - [ ] Diagnosticar por que `wendsontva-del.github.io/lana-farmasi/` retorna erro.
 - [ ] Corrigir a configuração de Pages ou a estrutura da branch publicada.
 - [ ] Testar novamente a URL pública.
+
+## Republicação solicitada
+
+- [ ] Conferir o estado das branches main e gh-pages.
+- [ ] Reenviar o build completo do projeto ao GitHub.
+- [ ] Confirmar a configuração do GitHub Pages e o endereço público.
