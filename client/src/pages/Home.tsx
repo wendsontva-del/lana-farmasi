@@ -97,10 +97,10 @@ export default function Home() {
       <div className="ambient ambient-one" /><div className="ambient ambient-two" />
       <div className="container">
         <header className="hero-heading">
-          <div className="brand-line"><img src="/manus-storage/lana-mark_db0c37a6.png" alt="" className="brand-mark" /><h1>Lana - Assistente Virtual Farmasi</h1></div>
+          <div className="brand-line"><img src="https://lanafarmasi-sfzd5bnj.manus.space/manus-storage/lana-mark_db0c37a6.png" alt="" className="brand-mark" /><h1>Lana - Assistente Virtual Farmasi</h1></div>
           <p><Sparkles size={15} fill="currentColor" /> Sua consultora de beleza virtual está aqui para ajudar! <Sparkles size={15} fill="currentColor" /></p>
         </header>
-        <div className="avatar-container"><div className="avatar-wrapper"><img src="/manus-storage/lana_avatar_0b543fc6.jpeg" alt="Avatar da Lana" className="avatar" /><span className="status-indicator" /></div></div>
+        <div className="avatar-container"><div className="avatar-wrapper"><img src="https://lanafarmasi-sfzd5bnj.manus.space/manus-storage/lana_avatar_0b543fc6.jpeg" alt="Avatar da Lana" className="avatar" /><span className="status-indicator" /></div></div>
         <section className="chat-container" aria-label="Conversa com Lana">
           <div className="chat-messages" ref={messagesRef}>
             {messages.map((message) => <div className={`message ${message.from === "lana" ? "lana-message" : "user-message"}`} key={message.id}>
@@ -113,7 +113,6 @@ export default function Home() {
           <div className="quick-options" aria-label="Opções rápidas">{options.map((option) => <button key={option.id} className="quick-btn" onClick={() => addOption(option)}>{option.label}</button>)}</div>
           <div className="input-area"><label htmlFor="user-input" className="sr-only">Digite sua pergunta sobre Farmasi</label><input id="user-input" value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") sendMessage(); }} placeholder="Digite sua pergunta sobre Farmasi..." /><button className="mic-btn" aria-label="Ativar microfone" onClick={() => window.alert("Funcionalidade de reconhecimento de voz em desenvolvimento! 🎤")}><Mic size={18} /></button><button className="send-btn" onClick={sendMessage}><Send size={15} /> Enviar</button></div>
         </section>
-        <div className="made-with">✣ Made with Manus</div>
       </div>
     </main>
   );
