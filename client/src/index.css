@@ -1,177 +1,56 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Direção visual: reprodução fiel Lana/Farmasi — rosa-magenta, coral e laranja, Poppins, chat branco compacto. */
+:root { --ease-out: cubic-bezier(.23,1,.32,1); }
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; margin: 0; }
+body { font-family: 'Poppins', sans-serif; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:active { transform: scale(.97); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-:root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
-
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
-}
-
-@layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
-  }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
-  }
-}
+.page-shell { min-height: 100vh; position: relative; overflow: hidden; padding: 20px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e91e63 0%, #ff6b6b 50%, #ffa726 100%); }
+.page-shell::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .2; background-image: url('/manus-storage/lana-coral-texture_b5847186.png'); background-size: cover; mix-blend-mode: soft-light; }
+.ambient { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .22; pointer-events: none; }
+.ambient-one { width: 280px; height: 280px; background: #ff3d92; top: -130px; left: -100px; }
+.ambient-two { width: 360px; height: 360px; background: #ffd166; right: -180px; bottom: -180px; }
+.container { position: relative; z-index: 1; width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 20px; }
+.hero-heading { color: white; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,.3); }
+.brand-line { display: flex; justify-content: center; align-items: center; gap: 8px; }
+.brand-mark { width: 29px; height: 29px; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0,0,0,.18)); }
+h1 { margin: 0 0 5px; font-size: 2em; line-height: 1.2; font-weight: 700; }
+.hero-heading p { display: flex; gap: 4px; justify-content: center; align-items: center; margin: 0; font-size: 1.1em; font-weight: 400; }
+.avatar-container { display: flex; justify-content: center; margin: 10px 0; }
+.avatar-wrapper { width: 120px; height: 120px; position: relative; }
+.avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,.3); }
+.status-indicator { position: absolute; width: 25px; height: 25px; right: 5px; bottom: 5px; border: 3px solid white; border-radius: 50%; background: #4caf50; box-shadow: 0 2px 5px rgba(0,0,0,.3); }
+.chat-container { max-height: 600px; overflow: hidden; display: flex; flex-direction: column; border-radius: 20px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+.chat-messages { flex: 1; max-height: 300px; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+.message { max-width: 85%; padding: 15px 20px; border-radius: 15px; word-wrap: break-word; animation: fadeIn .3s var(--ease-out); }
+.lana-message { align-self: flex-start; color: white; background: linear-gradient(135deg, #ff4081 0%, #ff6b9d 100%); border-bottom-left-radius: 5px; }
+.user-message { align-self: flex-end; color: #333; background: #f0f0f0; border-bottom-right-radius: 5px; }
+.message-content { line-height: 1.6; white-space: normal; }
+.message-content strong { font-weight: 700; }
+.quick-options, .input-area { background: #fafafa; border-top: 1px solid #e0e0e0; }
+.quick-options { max-height: 200px; padding: 15px 20px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+.quick-btn, .send-btn, .link-button, .suggested-button { color: white; font-weight: 600; border: 0; border-radius: 20px; background: linear-gradient(135deg, #ff4081 0%, #ff6b9d 100%); box-shadow: 0 2px 5px rgba(0,0,0,.1); transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), background .2s var(--ease-out); }
+.quick-btn { padding: 10px 15px; font-size: .9em; }
+.quick-btn:hover, .send-btn:hover, .link-button:hover, .suggested-button:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.2); }
+.input-area { padding: 15px 20px; display: flex; align-items: center; gap: 10px; }
+#user-input { flex: 1; min-width: 0; padding: 12px 15px; outline: none; color: #333; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 1em; transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out); }
+#user-input:focus { border-color: #ff4081; box-shadow: 0 0 0 3px rgba(255,64,129,.15); }
+.mic-btn, .send-btn { min-height: 44px; padding: 12px 20px; border: 0; border-radius: 25px; font-size: 1em; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all .2s var(--ease-out); }
+.mic-btn { color: #333; background: #f0f0f0; }
+.mic-btn:hover { background: #e0e0e0; }
+.send-btn { white-space: nowrap; }
+.link-button, .suggested-button { display: inline-block; margin-top: 10px; padding: 10px 15px; text-decoration: none; font-size: .9em; }
+.suggested-button { display: block; }
+.made-with { align-self: flex-end; margin-top: 52px; padding: 8px 12px; color: white; border-radius: 16px; background: rgba(0,0,0,.76); font-size: .72rem; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.chat-messages::-webkit-scrollbar, .quick-options::-webkit-scrollbar { width: 8px; }
+.chat-messages::-webkit-scrollbar-track, .quick-options::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; }
+.chat-messages::-webkit-scrollbar-thumb, .quick-options::-webkit-scrollbar-thumb { background: #ff4081; border-radius: 10px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) { .page-shell { padding: 16px 12px; align-items: flex-start; } .container { gap: 14px; padding-top: 18px; } h1 { font-size: 1.5em; } .hero-heading p { font-size: .9em; } .avatar-wrapper { width: 100px; height: 100px; } .status-indicator { width: 22px; height: 22px; right: 2px; bottom: 2px; } .message { max-width: 90%; } .quick-options { max-height: 235px; padding: 12px; gap: 8px; } .quick-btn { padding: 9px 11px; font-size: .78em; } .input-area { flex-wrap: wrap; padding: 12px; } #user-input { width: 100%; flex-basis: 100%; } .mic-btn, .send-btn { flex: 1; } .made-with { margin-top: 12px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
